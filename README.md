@@ -1,7 +1,8 @@
+## Endpoints
 
-Endpoint Personalized (production): https://wikirip-database.pages.dev
-Endpoint Test (dev): https://dev.wikirip-works.projetobot.workers.dev
-Endpoint Main (original): https://main.wikirip-database.pages.dev
+Endpoint Main (production): https://main.wikirip-database.pages.dev
+
+Endpoint Dev (dev): https://dev.wikirip-works.projetobot.workers.dev
 
 # D1 Manager
 
