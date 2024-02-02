@@ -3,7 +3,7 @@
 Endpoint Main (production): https://main.wikirip-database.pages.dev
 
 Endpoint Dev (dev): https://dev.wikirip-works.projetobot.workers.dev
-
+ 
 # D1 Manager
 
 D1 Manager is a web UI and API for Cloudflare D1, a serverless SQL database. It provides a user-friendly interface for managing databases, tables, and records, as well as an API for performing operations programmatically. D1 Manager simplifies database management, enabling users to focus on their data.
