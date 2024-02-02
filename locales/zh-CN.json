@@ -17,7 +17,8 @@
 		"es-MX": "墨西哥西班牙语",
 		"ja": "日语",
 		"zh-CN": "简体中文",
-		"zh-TW": "繁体中文"
+		"zh-TW": "繁体中文",
+		"pt-BR": "Português (Brasil)"
 	},
 	"language": "语言",
 	"n-ms": "花费 {n} 毫秒",
