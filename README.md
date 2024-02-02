@@ -1,8 +1,8 @@
 ## Endpoints
 
-Endpoint Main (production): https://main.wikirip-database.pages.dev
+Endpoint Main (production): https://wikirip-database.pages.dev
 
-Endpoint Dev (dev): https://dev.wikirip-works.projetobot.workers.dev
+Endpoint Dev (dev): https://dev.wikirip-database.pages.dev
 
 # D1 Manager
 
