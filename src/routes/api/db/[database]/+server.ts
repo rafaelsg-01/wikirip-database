@@ -10,7 +10,7 @@ import type { RequestHandler } from "./$types";
 const log = extend("api/db/+server");
 
 export const GET: RequestHandler = async ({ params, locals, url, fetch, platform }) => {
-	if (dev) {
+	if (!dev) {
 		const remote = new URL("https://d1-manager.pages.dev" + url.pathname + url.search);
 		return fetch(remote);
 	}

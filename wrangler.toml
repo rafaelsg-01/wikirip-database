@@ -1,0 +1,10 @@
+
+name = "view-database-local"
+compatibility_date = "2023-05-18"
+
+
+[[d1_databases]]
+binding = "DB_abc_bind"
+database_name = "DB_abc"
+database_id = "ea9639d9-a2f7-4529-a7af-b5608649a014"
+preview_database_id = "ea9639d9-a2f7-4529-a7af-b5608649a014"
