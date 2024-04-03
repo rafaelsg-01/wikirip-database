@@ -3,6 +3,8 @@ import { DBMS } from "$lib/server/db/dbms";
 import type { Handle, HandleServerError } from "@sveltejs/kit";
 import { locale, waitLocale } from "svelte-i18n";
 
+console.log(process.env.NODE_ENV);
+
 export const handle: Handle = async ({ event, resolve }) => {
 	const lang = event.request.headers.get("accept-language")?.split(",")[0] || "en";
 	locale.set(lang);
