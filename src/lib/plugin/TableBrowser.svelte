@@ -209,7 +209,7 @@
 
 {#if result}
 	{#if result.length}
-		<div class="max-h-[80vh] overflow-auto transition-opacity" class:opacity-50={running}>
+		<div class="max-h-[80vh] overflow-auto transition-opacity" class:opacity-50={running} on:wheel={(e) => {if (e.shiftKey) {e.preventDefault(); e.currentTarget.scrollLeft += e.deltaY;}}}>
 			<table class="table-sm table min-w-full">
 				<thead>
 					<tr class="sticky top-0 z-10 bg-base-200 shadow">
