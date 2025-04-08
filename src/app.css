@@ -6,9 +6,9 @@
 	@apply relative font-sans;
 }
 
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
 	@apply hidden;
-}
+} */
 
 html,
 body {
