@@ -235,7 +235,7 @@
 				bind:value={inputLimit}
 				min="1"
 			/>
-			<button class="btn btn-sm btn-primary" on:click={applyLimit}>
+			<button class="btn-ghost btn-sm btn" on:click={applyLimit}>
 				Apply
 			</button>
 		</div>
