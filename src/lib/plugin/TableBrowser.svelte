@@ -284,7 +284,7 @@
 
 	{#if result.length}
 		<div
-			class="max-h-[80vh] overflow-auto transition-opacity"
+			class="overflow-auto transition-opacity"
 			class:opacity-50={running}
 			on:wheel={(e) => {
 				if (e.shiftKey) {
