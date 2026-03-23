@@ -17,6 +17,7 @@
 	let locked = true;
 	let offset = 0;
 	let limit = 20;
+	let inputLimit = 20;
 	let order = "";
 	let dir: "ASC" | "DESC" = "ASC";
 	let select = "*";
@@ -33,8 +34,25 @@
 		| undefined;
 
 	onMount(() => {
+		const savedLimit = localStorage.getItem("table-browser-limit");
+		if (savedLimit) {
+			const parsed = parseInt(savedLimit, 10);
+			if (!isNaN(parsed) && parsed > 0) {
+				limit = parsed;
+				inputLimit = parsed;
+			}
+		}
 		run();
 	});
+
+	function applyLimit() {
+		if (inputLimit > 0) {
+			limit = inputLimit;
+			localStorage.setItem("table-browser-limit", limit.toString());
+			offset = 0;
+			run();
+		}
+	}
 
 	async function run() {
 		if (running) {
@@ -208,8 +226,73 @@
 </div>
 
 {#if result}
+	<div class="flex flex-col gap-2 pb-4">
+		<div class="flex items-center gap-2">
+			<label class="font-semibold text-sm">Limit:</label>
+			<input 
+				type="number" 
+				class="input input-bordered input-sm w-24"
+				bind:value={inputLimit}
+				min="1"
+			/>
+			<button class="btn btn-sm btn-primary" on:click={applyLimit}>
+				Apply
+			</button>
+		</div>
+
+		<div class="flex items-center justify-between">
+			{#if offset > 0}
+				<button
+					class="btn-ghost btn-sm btn"
+					on:click={() => {
+						offset -= limit;
+						run();
+					}}
+					disabled={running}
+				>
+					{$t("plugin.table-browser.prev")}
+				</button>
+			{:else}
+				<div class="w-16"></div> <!-- Placeholder to keep text centered -->
+			{/if}
+
+			<p class="flex-grow-0 px-4">
+				{$t("plugin.table-browser.showing", {
+					values: {
+						from: result.length ? offset + 1 : offset,
+						to: offset + result.length,
+					},
+				})}
+			</p>
+
+			{#if result.length === limit}
+				<button
+					class="btn-ghost btn-sm btn"
+					on:click={() => {
+						offset += limit;
+						run();
+					}}
+					disabled={running}
+				>
+					{$t("plugin.table-browser.next")}
+				</button>
+			{:else}
+				<div class="w-16"></div> <!-- Placeholder to keep text centered -->
+			{/if}
+		</div>
+	</div>
+
 	{#if result.length}
-		<div class="max-h-[80vh] overflow-auto transition-opacity" class:opacity-50={running} on:wheel={(e) => {if (e.shiftKey) {e.preventDefault(); e.currentTarget.scrollLeft += e.deltaY;}}}>
+		<div
+			class="max-h-[80vh] overflow-auto transition-opacity"
+			class:opacity-50={running}
+			on:wheel={(e) => {
+				if (e.shiftKey) {
+					e.preventDefault();
+					e.currentTarget.scrollLeft += e.deltaY;
+				}
+			}}
+		>
 			<table class="table-sm table min-w-full">
 				<thead>
 					<tr class="sticky top-0 z-10 bg-base-200 shadow">
@@ -284,43 +367,6 @@
 			{$t("plugin.table-browser.no-results")}
 		</p>
 	{/if}
-
-	<div class="flex items-center justify-between">
-		{#if offset > 0}
-			<button
-				class="btn-ghost btn-sm btn"
-				on:click={() => {
-					offset -= limit;
-					run();
-				}}
-				disabled={running}
-			>
-				{$t("plugin.table-browser.prev")}
-			</button>
-		{/if}
-
-		<p class="flex-grow-0 px-4">
-			{$t("plugin.table-browser.showing", {
-				values: {
-					from: result.length ? offset + 1 : offset,
-					to: offset + result.length,
-				},
-			})}
-		</p>
-
-		{#if result.length === limit}
-			<button
-				class="btn-ghost btn-sm btn"
-				on:click={() => {
-					offset += limit;
-					run();
-				}}
-				disabled={running}
-			>
-				{$t("plugin.table-browser.next")}
-			</button>
-		{/if}
-	</div>
 {/if}
 
 {#if error}
