@@ -36,7 +36,7 @@
 
 {#if show}
 	<div
-		class="fixed right-0 top-0 z-20 h-full w-80 max-w-[4/5] p-2 opacity-90"
+		class="fixed right-0 top-0 z-20 h-full w-80 max-w-[4/5] p-2 opacity-90 hidden"
 		transition:fly={{ x: 100, duration: 100 }}
 	>
 		<div
